@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "101995352834",
+    "project_id": "kotlinfirebaseinsta-f1d0e",
+    "storage_bucket": "kotlinfirebaseinsta-f1d0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101995352834:android:66d78c36c72a315af8281b",
+        "android_client_info": {
+          "package_name": "com.example.kotlinfirebaseinsta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101995352834-2u8sok6m19u2tg2o7tioqb3upcl9c74i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa3N_XIbTu_qlYf1ElDHQSrvG-8mrXT0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101995352834-2u8sok6m19u2tg2o7tioqb3upcl9c74i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
