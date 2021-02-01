@@ -12,17 +12,28 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import java.util.*
 
 class UploadActivity : AppCompatActivity() {
 
     var selectedPicture : Uri? = null
+    private lateinit var auth : FirebaseAuth
+    private lateinit var db : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
 
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
     }
 
@@ -72,6 +83,46 @@ class UploadActivity : AppCompatActivity() {
     }
 
     fun uploadClick(view : View) {
+
+        //UUID -> image name
+        val uuid = UUID.randomUUID()
+        val imageName = "$uuid.jpg"
+
+        val storage = FirebaseStorage.getInstance()
+        val reference = storage.reference
+        val imagesReference = reference.child("images").child(imageName)
+
+        if(selectedPicture != null) {
+
+            imagesReference.putFile(selectedPicture!!).addOnSuccessListener { taskSnapshot ->
+
+                //Database - Firestore
+
+                val uploadedPictureReference = FirebaseStorage.getInstance().reference.child("images").child((imageName))
+                uploadedPictureReference.downloadUrl.addOnSuccessListener { uri ->
+                    val downloadUrl = uri.toString()
+                    //println(downloadUrl)
+
+                    val postMap = hashMapOf<String,Any>()
+                    postMap.put("downloadUrl",downloadUrl)
+                    postMap.put("userEmail" , auth.currentUser!!.email.toString())
+                    postMap.put("comment" , findViewById<TextView>(R.id.commentText).text.toString())
+                    postMap.put("date" , Timestamp.now())
+
+                    db.collection("Posts").add(postMap).addOnCompleteListener { task ->
+                        if (task.isComplete && task.isSuccessful) {
+                            finish()
+                        }
+                    }.addOnFailureListener { exception ->
+                        Toast.makeText(applicationContext,exception.localizedMessage,Toast.LENGTH_LONG).show()
+                    }
+
+                }
+            }
+
+
+        }
+
 
     }
 }
