@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "101995352834",
-    "project_id": "kotlinfirebaseinsta-f1d0e",
-    "storage_bucket": "kotlinfirebaseinsta-f1d0e.appspot.com"
+    "project_number": "737041899763",
+    "project_id": "kotlinfirebaseinsta-43eca",
+    "storage_bucket": "kotlinfirebaseinsta-43eca.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:101995352834:android:66d78c36c72a315af8281b",
+        "mobilesdk_app_id": "1:737041899763:android:52f4349a34675732f79786",
         "android_client_info": {
           "package_name": "com.example.kotlinfirebaseinsta"
         }
       },
       "oauth_client": [
         {
-          "client_id": "101995352834-2u8sok6m19u2tg2o7tioqb3upcl9c74i.apps.googleusercontent.com",
+          "client_id": "737041899763-sts4o97u4qglq3dp03uf5u3c4vu3jdge.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDa3N_XIbTu_qlYf1ElDHQSrvG-8mrXT0M"
+          "current_key": "AIzaSyDM0J385S9Y4wphj7xiwDcxTVKC3o1QbIk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "101995352834-2u8sok6m19u2tg2o7tioqb3upcl9c74i.apps.googleusercontent.com",
+              "client_id": "737041899763-sts4o97u4qglq3dp03uf5u3c4vu3jdge.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

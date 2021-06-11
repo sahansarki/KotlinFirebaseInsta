@@ -92,6 +92,8 @@ class UploadActivity : AppCompatActivity() {
         val reference = storage.reference
         val imagesReference = reference.child("images").child(imageName)
 
+        println(uuid)
+
         if(selectedPicture != null) {
 
             imagesReference.putFile(selectedPicture!!).addOnSuccessListener { taskSnapshot ->
@@ -122,6 +124,8 @@ class UploadActivity : AppCompatActivity() {
 
 
         }
+
+        println(uuid)
 
 
     }

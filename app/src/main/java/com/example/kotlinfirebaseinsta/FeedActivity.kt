@@ -75,6 +75,7 @@ class FeedActivity : AppCompatActivity() {
         db.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+                println(exception.localizedMessage.toString())
 
             } else {
                 if (snapshot != null) {
