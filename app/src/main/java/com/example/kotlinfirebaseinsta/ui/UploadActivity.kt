@@ -1,4 +1,4 @@
-package com.example.kotlinfirebaseinsta
+package com.example.kotlinfirebaseinsta.ui
 
 import android.Manifest
 import android.app.Activity
@@ -11,15 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.kotlinfirebaseinsta.R
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_upload.*
 import java.util.*
 
 class UploadActivity : AppCompatActivity() {
@@ -69,11 +69,11 @@ class UploadActivity : AppCompatActivity() {
 
                     val source = ImageDecoder.createSource(contentResolver,selectedPicture!!)
                     val bitmap = ImageDecoder.decodeBitmap(source)
-                    findViewById<ImageView>(R.id.uploadImageView).setImageBitmap(bitmap)
+                    uploadImageView.setImageBitmap(bitmap)
 
                 } else {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,selectedPicture)
-                    findViewById<ImageView>(R.id.uploadImageView).setImageBitmap(bitmap)
+                    uploadImageView.setImageBitmap(bitmap)
                 }
 
             }
@@ -92,7 +92,6 @@ class UploadActivity : AppCompatActivity() {
         val reference = storage.reference
         val imagesReference = reference.child("images").child(imageName)
 
-        println(uuid)
 
         if(selectedPicture != null) {
 
@@ -108,7 +107,7 @@ class UploadActivity : AppCompatActivity() {
                     val postMap = hashMapOf<String,Any>()
                     postMap.put("downloadUrl",downloadUrl)
                     postMap.put("userEmail" , auth.currentUser!!.email.toString())
-                    postMap.put("comment" , findViewById<TextView>(R.id.commentText).text.toString())
+                    postMap.put("comment" , commentText.text.toString())
                     postMap.put("date" , Timestamp.now())
 
                     db.collection("Posts").add(postMap).addOnCompleteListener { task ->
@@ -125,7 +124,7 @@ class UploadActivity : AppCompatActivity() {
 
         }
 
-        println(uuid)
+
 
 
     }
