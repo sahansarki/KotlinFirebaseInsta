@@ -14,7 +14,7 @@ class FeedActivityViewModel(application: Application) : BaseViewModel(applicatio
 
     private val applicationFeed = application
 
-    //private var auth: FirebaseAuth = FirebaseLogic.auth
+    private var auth: FirebaseAuth = FirebaseLogic.auth
     private var db: FirebaseFirestore = FirebaseLogic.db
 
     var userPosts = MutableLiveData<ArrayList<Post>>()
@@ -55,6 +55,10 @@ class FeedActivityViewModel(application: Application) : BaseViewModel(applicatio
                 }
             }
         }
+    }
+
+    fun signOut() {
+        auth.signOut()
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.kotlinfirebaseinsta.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic
 import com.example.kotlinfirebaseinsta.R
@@ -28,10 +29,9 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-
     }
 
-    fun signUp() {
+    fun signUp(view : View) {
         val email = userEmailText.text.toString()
         val password = userPasswordText.text.toString()
 
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun signIn() {
+    fun signIn(view : View) {
         val email = userEmailText.text.toString()
         val password = userPasswordText.text.toString()
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{

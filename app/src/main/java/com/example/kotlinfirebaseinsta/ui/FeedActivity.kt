@@ -20,13 +20,7 @@ import kotlinx.android.synthetic.main.activity_feed.*
 
 class FeedActivity : AppCompatActivity() {
 
-    private lateinit var auth : FirebaseAuth
-    private lateinit var db : FirebaseFirestore
-
     private lateinit var feedViewModel : FeedActivityViewModel
-
-
-
 
     var feedAdapter = FeedRecyclerAdapter(null)
 
@@ -47,7 +41,8 @@ class FeedActivity : AppCompatActivity() {
 
         } else if (item.itemId == R.id.logout) {
             //Logout
-            auth.signOut()
+//            auth.signOut()
+            feedViewModel.signOut()
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()
@@ -61,11 +56,6 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
-
-        auth = FirebaseLogic.auth
-        db = FirebaseLogic.db
-
-
 
         feedViewModel = ViewModelProvider(this).get(FeedActivityViewModel::class.java)
         feedViewModel.getDataFromFirestore()
