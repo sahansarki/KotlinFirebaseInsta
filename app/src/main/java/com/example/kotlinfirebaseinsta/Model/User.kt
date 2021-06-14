@@ -1,5 +1,6 @@
 package com.example.kotlinfirebaseinsta.Model
 
+import java.io.Serializable
 
 
 data class User(
@@ -7,4 +8,5 @@ data class User(
     val username : String,
     val password : String,
     var photoUrl : String = ""
-)
+) : Serializable
+

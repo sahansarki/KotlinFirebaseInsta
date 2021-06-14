@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:orientation="vertical"
+    android:background="#C19767"
+    tools:context=".ui.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="Kişisel Bilgiler"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="Name"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+         />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="İletişim"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/profileEmail"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:text="Email"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
