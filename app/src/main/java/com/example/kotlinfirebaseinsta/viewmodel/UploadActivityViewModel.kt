@@ -18,6 +18,7 @@ class UploadActivityViewModel(application: Application) : BaseViewModel(applicat
     var selectedPicture : Uri? = null
     var auth: FirebaseAuth = FirebaseLogic.auth
     var db: FirebaseFirestore = FirebaseLogic.db
+    var storage : FirebaseStorage = FirebaseLogic.storage
     private var applicationUpload = application
     var returnValue = MutableLiveData<Boolean>()
 
@@ -28,7 +29,7 @@ class UploadActivityViewModel(application: Application) : BaseViewModel(applicat
         val uuid = UUID.randomUUID()
         val imageName = "$uuid.jpg"
 
-        val storage = FirebaseStorage.getInstance()
+        //val storage = FirebaseStorage.getInstance()
         val reference = storage.reference
         val imagesReference = reference.child("images").child(imageName)
 

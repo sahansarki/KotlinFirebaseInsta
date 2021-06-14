@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+
     tools:context=".ui.MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/instagram"
+        />
+
+
+
 
     <EditText
         android:id="@+id/userEmailText"
@@ -14,6 +24,7 @@
         android:layout_height="wrap_content"
         android:hint="user email"
         android:inputType="textPersonName"
+        android:layout_margin="20dp"
         />
 
     <EditText
@@ -21,7 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
+        android:layout_margin="20dp"
         />
 
 
@@ -30,13 +42,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="50dp"
+        android:layout_margin="30dp"
         >
 
         <Button
             android:id="@+id/signInButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
             android:onClick="signIn"
             android:text="Sign In"
             android:layout_marginRight="20dp"
@@ -46,12 +59,12 @@
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
             android:onClick="signUp"
             android:text="Sign Up"
             />
 
     </LinearLayout>
-
 
 
 

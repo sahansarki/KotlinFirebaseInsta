@@ -32,19 +32,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun signUp(view : View) {
-        val email = userEmailText.text.toString()
-        val password = userPasswordText.text.toString()
 
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
-            if(it.isSuccessful) {
-                val intent = Intent(applicationContext, FeedActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
 
-        }.addOnFailureListener {
-            Toast.makeText(applicationContext,it.localizedMessage?.toString(),Toast.LENGTH_LONG).show()
-        }
+        val intent = Intent(applicationContext, SignUpActivity::class.java)
+        startActivity(intent)
+
+//        val email = userEmailText.text.toString()
+//        val password = userPasswordText.text.toString()
+//
+//        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
+//            if(it.isSuccessful) {
+//                val intent = Intent(applicationContext, FeedActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
+//
+//        }.addOnFailureListener {
+//            Toast.makeText(applicationContext,it.localizedMessage?.toString(),Toast.LENGTH_LONG).show()
+//        }
     }
 
     fun signIn(view : View) {

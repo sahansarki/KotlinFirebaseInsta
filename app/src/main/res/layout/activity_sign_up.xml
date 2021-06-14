@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.SignUpActivity">
+
+
+    <ImageView
+        android:id="@+id/user_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:onClick="imageClick"
+        />
+
+    <EditText
+        android:id="@+id/user_Usermail"
+        android:layout_width="269dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="E-Mail"
+        android:inputType="textPersonName"
+         />
+
+    <EditText
+        android:id="@+id/user_Username"
+        android:layout_width="269dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+         />
+
+    <EditText
+        android:id="@+id/user_Userpassword"
+        android:layout_width="269dp"
+        android:layout_height="52dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="Sign Up!"
+        android:layout_margin="50dp"
+        android:onClick="signUp"
+        />
+
+
+</LinearLayout>
