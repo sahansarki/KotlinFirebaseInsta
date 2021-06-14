@@ -10,7 +10,7 @@ import com.example.kotlinfirebaseinsta.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
 
     private lateinit var auth : FirebaseAuth
@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         if(currentUser != null) {
             val intent = Intent(applicationContext, FeedActivity::class.java)
-
             startActivity(intent)
             finish()
         }
@@ -37,19 +36,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(applicationContext, SignUpActivity::class.java)
         startActivity(intent)
 
-//        val email = userEmailText.text.toString()
-//        val password = userPasswordText.text.toString()
-//
-//        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
-//            if(it.isSuccessful) {
-//                val intent = Intent(applicationContext, FeedActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            }
-//
-//        }.addOnFailureListener {
-//            Toast.makeText(applicationContext,it.localizedMessage?.toString(),Toast.LENGTH_LONG).show()
-//        }
+
     }
 
     fun signIn(view : View) {

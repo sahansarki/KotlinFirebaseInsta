@@ -5,23 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic.db
-import com.example.kotlinfirebaseinsta.Model.Post
 import com.example.kotlinfirebaseinsta.Model.User
 import com.example.kotlinfirebaseinsta.adapter.FeedRecyclerAdapter
 import com.example.kotlinfirebaseinsta.R
 import com.example.kotlinfirebaseinsta.viewmodel.FeedActivityViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_feed.*
-import kotlinx.android.synthetic.main.recyler_view_row.*
 import kotlinx.android.synthetic.main.recyler_view_row.view.*
 import java.io.Serializable
 
@@ -29,7 +21,7 @@ class FeedActivity : AppCompatActivity() {
 
     private lateinit var feedViewModel: FeedActivityViewModel
 
-    //    var feedAdapter = FeedRecyclerAdapter(null, null)
+
     private lateinit var feedAdapter: FeedRecyclerAdapter
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -50,7 +42,7 @@ class FeedActivity : AppCompatActivity() {
             //Logout
 //            auth.signOut()
             feedViewModel.signOut()
-            val intent = Intent(applicationContext, MainActivity::class.java)
+            val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)
             finish()
 

@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.recyler_view_row.view.*
 class FeedRecyclerAdapter(var post: ArrayList<Post>?, var feedViewModel: FeedActivityViewModel?) :
     RecyclerView.Adapter<FeedRecyclerAdapter.PostHolder>() {
 
-    //private lateinit var feedViewModel : FeedActivityViewModel
 
     class PostHolder(view: View) : RecyclerView.ViewHolder(view)
 

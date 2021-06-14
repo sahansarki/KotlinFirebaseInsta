@@ -29,7 +29,7 @@ class UploadActivityViewModel(application: Application) : BaseViewModel(applicat
         val uuid = UUID.randomUUID()
         val imageName = "$uuid.jpg"
 
-        //val storage = FirebaseStorage.getInstance()
+
         val reference = storage.reference
         val imagesReference = reference.child("images").child(imageName)
 
