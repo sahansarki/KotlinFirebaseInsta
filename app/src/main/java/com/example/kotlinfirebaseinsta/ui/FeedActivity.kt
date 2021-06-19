@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,12 +22,12 @@ class FeedActivity : AppCompatActivity() {
 
     private lateinit var feedViewModel: FeedActivityViewModel
 
-
     private lateinit var feedAdapter: FeedRecyclerAdapter
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        val menuInfllater = menuInflater
-        menuInfllater.inflate(R.menu.options_menu, menu)
+        val menuInflater = menuInflater
+        menuInflater.inflate(R.menu.options_menu, menu)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -34,13 +35,12 @@ class FeedActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.add_post) {
-            // Upload Activity
+
             val intent = Intent(applicationContext, UploadActivity::class.java)
             startActivity(intent)
 
         } else if (item.itemId == R.id.logout) {
-            //Logout
-//            auth.signOut()
+
             feedViewModel.signOut()
             val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)
@@ -57,14 +57,15 @@ class FeedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_feed)
 
         feedViewModel = ViewModelProvider(this).get(FeedActivityViewModel::class.java)
-        feedViewModel.getDataFromFirestore()
+
 
         feedAdapter = FeedRecyclerAdapter(null, feedViewModel)
-        //recylerview ayarları
+
         val layoutManager = LinearLayoutManager(this)
         recylerview.layoutManager = layoutManager
 
         recylerview.adapter = feedAdapter
+        feedViewModel.getDataFromFirestore()
 
         observeLiveData()
 
@@ -95,6 +96,10 @@ class FeedActivity : AppCompatActivity() {
                 val email = View.recyclerEmailText.text.toString()
 
                 db.collection("Users").addSnapshotListener { snapshot, exception ->
+
+                    if(exception != null) {
+                        Toast.makeText(applicationContext,exception.localizedMessage,Toast.LENGTH_LONG).show()
+                    }
                     if (snapshot != null) {
                         if (!snapshot.isEmpty) {
                             val documents = snapshot.documents

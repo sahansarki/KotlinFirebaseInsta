@@ -7,5 +7,7 @@ data class Post(
     val comment : String,
     val date : Timestamp?,
     val downloadUrl : String,
-    val userEmail : String
+    val userEmail : String,
+    var likeNumber : Int = 0,
+    var users : List<String> = listOf()
 )

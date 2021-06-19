@@ -48,10 +48,11 @@ class UploadActivityViewModel(application: Application) : BaseViewModel(applicat
                     postMap["downloadUrl"] = downloadUrl
                     postMap["userEmail"] = auth.currentUser!!.email.toString()
                     postMap["comment"] = view.rootView.commentText.text.toString()
-
+                    postMap["likeNumber"] = 0
                     postMap["date"] = Timestamp.now()
+                    postMap["users"] = listOf<Int>()
 
-                    db.collection("Posts").add(postMap).addOnCompleteListener { task ->
+                    db.collection("Posts").document("${auth.currentUser!!.email}").set(postMap).addOnCompleteListener { task ->
                         if (task.isComplete && task.isSuccessful) {
                             returnValue.value = true
                         }

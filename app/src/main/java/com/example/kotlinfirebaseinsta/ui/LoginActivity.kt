@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         val intent = Intent(applicationContext, SignUpActivity::class.java)
         startActivity(intent)
+        finish()
 
 
     }
@@ -42,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
     fun signIn(view : View) {
         val email = userEmailText.text.toString()
         val password = userPasswordText.text.toString()
+
+
+
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
             if(it.isSuccessful) {
                 Toast.makeText(applicationContext,"Welcome ${auth.currentUser?.email.toString()}",Toast.LENGTH_LONG).show()
