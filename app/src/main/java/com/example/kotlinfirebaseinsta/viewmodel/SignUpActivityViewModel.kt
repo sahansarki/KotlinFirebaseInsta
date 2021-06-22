@@ -8,17 +8,12 @@ import android.os.Build
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic
 import com.example.kotlinfirebaseinsta.Model.User
 import com.example.kotlinfirebaseinsta.ui.FeedActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_sign_up.view.*
-import kotlinx.android.synthetic.main.activity_upload.view.*
-import java.util.*
+
 
 class SignUpActivityViewModel(application: Application) : BaseViewModel(application) {
 

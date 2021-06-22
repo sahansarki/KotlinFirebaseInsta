@@ -6,17 +6,9 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic
-import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.example.kotlinfirebaseinsta.Model.User
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_upload.view.*
-import java.util.*
 
 class UploadActivityViewModel(application: Application) : BaseViewModel(application){
 

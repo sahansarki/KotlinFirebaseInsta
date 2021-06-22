@@ -1,18 +1,13 @@
 package com.example.kotlinfirebaseinsta.FireBaseService
 
-import android.content.Intent
 import android.net.Uri
 import android.view.View
-import android.widget.Toast
+
 import com.example.kotlinfirebaseinsta.Model.Post
-import com.example.kotlinfirebaseinsta.Model.User
-import com.example.kotlinfirebaseinsta.ui.FeedActivity
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_upload.view.*
 import java.util.*
@@ -53,8 +48,6 @@ object FirebaseLogic {
 
                     makeUser(downloadUrl)
 
-//                    val postMap = hashMapOf<String, Any>()
-//                    postMap["downloadUrl"] = downloadUrl
 
 
                 }.addOnFailureListener { exception ->
@@ -78,8 +71,7 @@ object FirebaseLogic {
             if (it.isSuccessful) {
                 putImageUrl()
                 intentUpdate()
-//                val intent = Intent(applicationSign, FeedActivity::class.java)
-//                signIntent.value = intent
+
             }
 
         }.addOnFailureListener {
@@ -136,7 +128,6 @@ object FirebaseLogic {
                             db.collection("Posts").document("$uuid").update("uuid",uuid)
                             db.collection("Users").document("${auth.currentUser!!.email}").update("posts", FieldValue.arrayUnion(uuid))
                             updateReturnValue()
-//                            returnValue.value = true
                         }
                     }.addOnFailureListener { exception ->
                         println(exception.localizedMessage)

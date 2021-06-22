@@ -3,7 +3,6 @@ package com.example.kotlinfirebaseinsta.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.kotlinfirebaseinsta.Model.User
 import com.example.kotlinfirebaseinsta.R
 import com.squareup.picasso.Picasso
@@ -17,7 +16,6 @@ class ProfileActivity : AppCompatActivity() {
 
         val user = intent.extras?.get("user") as User
 
-        //Toast.makeText(applicationContext, "${user.username} Profili!",Toast.LENGTH_LONG).show()
 
         Picasso.get().load(user.photoUrl).into(profileImageView)
         profileEmail.text = user.email

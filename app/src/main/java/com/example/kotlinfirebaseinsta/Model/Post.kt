@@ -1,7 +1,6 @@
 package com.example.kotlinfirebaseinsta.Model
 
 import com.google.firebase.Timestamp
-import java.util.*
 
 
 data class Post(

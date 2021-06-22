@@ -2,7 +2,6 @@ package com.example.kotlinfirebaseinsta.viewmodel
 
 import android.app.Application
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic
@@ -11,7 +10,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import org.w3c.dom.Text
+
 
 class FeedActivityViewModel(application: Application) : BaseViewModel(application) {
 

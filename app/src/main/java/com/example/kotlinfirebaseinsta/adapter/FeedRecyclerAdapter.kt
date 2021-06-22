@@ -11,7 +11,6 @@ import com.example.kotlinfirebaseinsta.R
 import com.example.kotlinfirebaseinsta.viewmodel.FeedActivityViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyler_view_row.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FeedRecyclerAdapter(var post: ArrayList<Post>?, var feedViewModel: FeedActivityViewModel?) :
@@ -114,7 +113,7 @@ class FeedRecyclerAdapter(var post: ArrayList<Post>?, var feedViewModel: FeedAct
                     )
 
                 }
-                //notifyDataSetChanged()
+
             }
 
 
@@ -127,10 +126,7 @@ class FeedRecyclerAdapter(var post: ArrayList<Post>?, var feedViewModel: FeedAct
 
     }
 
-    /*
-    val l: Int = if (b != null) b.length else -1!
-    val l = b?.length ?: -1
-     */
+
 
     fun updatePost(newPosts: ArrayList<Post>) {
 

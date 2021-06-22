@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic.db
 import com.example.kotlinfirebaseinsta.Model.User
