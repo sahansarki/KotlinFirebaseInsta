@@ -2,7 +2,10 @@ package com.example.kotlinfirebaseinsta.viewmodel
 
 import android.app.Application
 import android.content.Intent
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
@@ -14,15 +17,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_sign_up.view.*
+import kotlinx.android.synthetic.main.activity_upload.view.*
 import java.util.*
 
 class SignUpActivityViewModel(application: Application) : BaseViewModel(application) {
 
     private val applicationSign = application
-    private var auth: FirebaseAuth = FirebaseLogic.auth
-    private var db: FirebaseFirestore = FirebaseLogic.db
-    private var storage: FirebaseStorage = FirebaseLogic.storage
+
     var signIntent = MutableLiveData<Intent>()
+
 
     private lateinit var email: String
     private lateinit var username: String
@@ -36,58 +39,44 @@ class SignUpActivityViewModel(application: Application) : BaseViewModel(applicat
         password = view.rootView.user_Userpassword.text.toString()
 
 
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-            if (it.isSuccessful) {
-                putImageUrl()
-                val intent = Intent(applicationSign, FeedActivity::class.java)
-                signIntent.value = intent
-            }
-
-        }.addOnFailureListener {
-            Toast.makeText(applicationSign, it.localizedMessage?.toString(), Toast.LENGTH_LONG)
-                .show()
+        FirebaseLogic.putUserToFirebase(email, password, ::putImageUrl) {
+            val intent = Intent(applicationSign, FeedActivity::class.java)
+            signIntent.value = intent
         }
 
 
+    }
+
+    fun photoClick(view: View) {
+        if (userPhoto != null) {
+            if (Build.VERSION.SDK_INT >= 28) {
+
+                val source =
+                    ImageDecoder.createSource(applicationSign.contentResolver, userPhoto!!)
+                val bitmap = ImageDecoder.decodeBitmap(source)
+                view.user_photo.setImageBitmap(bitmap)
+
+            } else {
+                val bitmap = MediaStore.Images.Media.getBitmap(
+                    applicationSign.contentResolver,
+                    userPhoto!!
+                )
+                view.user_photo.setImageBitmap(bitmap)
+            }
+        }
     }
 
     private fun putImageUrl() {
 
-        val uuid = UUID.randomUUID()
-        val imageName = "$uuid.jpg"
-
-        val profilePhotoReference = storage.reference.child("ProfileImages").child(imageName)
-
-        if (userPhoto != null) {
-
-            profilePhotoReference.putFile(userPhoto!!).addOnSuccessListener { taskSnapshot ->
-
-                //val uploadedPhotoReference = profilePhotoReference.child(imageName)
-
-                profilePhotoReference.downloadUrl.addOnSuccessListener { uri ->
-
-                    val downloadUrl = uri.toString()
-
-                    makeUser(downloadUrl)
-
-                    val postMap = hashMapOf<String, Any>()
-                    postMap["downloadUrl"] = downloadUrl
+        FirebaseLogic.putImageToFirebase(userPhoto, ::makeUser)
 
 
-
-
-                }.addOnFailureListener { exception ->
-                    Toast.makeText(applicationSign, exception.localizedMessage, Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-        }
     }
 
 
-    private fun makeUser(photoUrl : String) {
+    private fun makeUser(photoUrl: String) {
 
-        val user = User(email, username, password , photoUrl)
+        val user = User(email, username, password, photoUrl)
         val userMap = hashMapOf<String, Any>()
 
 
@@ -95,17 +84,14 @@ class SignUpActivityViewModel(application: Application) : BaseViewModel(applicat
         userMap["username"] = user.username
         userMap["password"] = user.password
         userMap["photoUrl"] = user.photoUrl
+        userMap["posts"] = user.posts
 
-        db.collection("Users").add(userMap).addOnCompleteListener { task ->
-            if (task.isComplete && task.isSuccessful) {
-                Toast.makeText(
-                    applicationSign,
-                    " ${user.username}  Sisteme Eklendi",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }.addOnFailureListener { exception ->
-            Toast.makeText(applicationSign, exception.localizedMessage, Toast.LENGTH_LONG).show()
+        FirebaseLogic.putUserToFirestore(userMap) {
+            Toast.makeText(
+                applicationSign,
+                "${userMap["username"]}  Sisteme Eklendi",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
 

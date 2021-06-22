@@ -1,25 +1,18 @@
 package com.example.kotlinfirebaseinsta.adapter
 
-import android.app.Application
-import android.content.Context
-import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinfirebaseinsta.FireBaseService.FirebaseLogic
 import com.example.kotlinfirebaseinsta.Model.Post
-import com.example.kotlinfirebaseinsta.Model.User
 import com.example.kotlinfirebaseinsta.R
-import com.example.kotlinfirebaseinsta.ui.ProfileActivity
 import com.example.kotlinfirebaseinsta.viewmodel.FeedActivityViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyler_view_row.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FeedRecyclerAdapter(var post: ArrayList<Post>?, var feedViewModel: FeedActivityViewModel?) :
     RecyclerView.Adapter<FeedRecyclerAdapter.PostHolder>() {
@@ -94,34 +87,34 @@ class FeedRecyclerAdapter(var post: ArrayList<Post>?, var feedViewModel: FeedAct
 
             recyclerLikeButton.setOnClickListener {
                 var like = post!![position].likeNumber
-                if (recyclerUserPhoto.tag == "dislike") {
+                if (recyclerLikeButton.tag == "dislike") {
                     like++
-                    recyclerUserPhoto.setBackgroundResource(R.drawable.ig_like)
-                    recyclerUserPhoto.tag = "like"
+                    recyclerLikeButton.setBackgroundResource(R.drawable.ig_like)
+                    recyclerLikeButton.tag = "like"
                     post!![position].likeNumber++
 
                     recyclerLikeNumber.text = "$like"
                     FirebaseLogic.updateLikeNumber(
                         post!![position],
-                        recyclerEmailText.text.toString(),
+                        like,
                         true
                     )
 
 
                 } else {
                     like--
-                    recyclerUserPhoto.setBackgroundResource(R.drawable.ig_unlike)
-                    recyclerUserPhoto.tag = "dislike"
+                    recyclerLikeButton.setBackgroundResource(R.drawable.ig_unlike)
+                    recyclerLikeButton.tag = "dislike"
                     post!![position].likeNumber--
                     recyclerLikeNumber.text = "$like"
                     FirebaseLogic.updateLikeNumber(
                         post!![position],
-                        recyclerEmailText.text.toString(),
+                        like,
                         false
                     )
 
                 }
-                notifyDataSetChanged()
+                //notifyDataSetChanged()
             }
 
 

@@ -33,7 +33,7 @@ class FeedActivityViewModel(application: Application) : BaseViewModel(applicatio
             if (exception != null) {
                 Toast.makeText(
                     applicationFeed,
-                    exception.localizedMessage!!.toString(),
+                    exception.localizedMessage.toString(),
                     Toast.LENGTH_LONG
                 ).show()
 
@@ -48,8 +48,9 @@ class FeedActivityViewModel(application: Application) : BaseViewModel(applicatio
                                 document.get("date") as Timestamp,
                                 document.get("downloadUrl") as String,
                                 document.get("userEmail") as String,
-                                (document.get("likeNumber") as Long).toInt(),
-                                document.get("users") as ArrayList<String>
+                                document.get("likeNumber") as Long,
+                                document.get("users") as ArrayList<String>,
+                                document.get("uuid") as String
                             )
                             postsList.add(post)
 

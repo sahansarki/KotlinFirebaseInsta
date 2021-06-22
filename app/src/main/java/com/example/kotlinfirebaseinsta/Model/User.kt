@@ -7,6 +7,7 @@ data class User(
     val email : String,
     val username : String,
     val password : String,
-    var photoUrl : String = ""
+    var photoUrl : String = "",
+    var posts : List<String> = listOf()
 ) : Serializable
 

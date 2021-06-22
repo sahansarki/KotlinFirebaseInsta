@@ -24,6 +24,8 @@ class FeedActivity : AppCompatActivity() {
 
     private lateinit var feedAdapter: FeedRecyclerAdapter
 
+
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         val menuInflater = menuInflater
@@ -37,6 +39,7 @@ class FeedActivity : AppCompatActivity() {
         if (item.itemId == R.id.add_post) {
 
             val intent = Intent(applicationContext, UploadActivity::class.java)
+
             startActivity(intent)
 
         } else if (item.itemId == R.id.logout) {
